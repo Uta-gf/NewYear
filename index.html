@@ -2,258 +2,221 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Happy New Year 💙</title>
+<title>Happy New Year 2026 💙</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-html{scroll-behavior:smooth;}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
 body{
   background:linear-gradient(180deg,#020024,#021b3a,#001533);
   color:#fff;
+  overflow-x:hidden;
 }
 
-/* SECTION */
-section{
-  min-height:100vh;
-  padding:80px 20px;
+/* HEADER */
+header{
+  padding:70px 20px 40px;
+  text-align:center;
+}
+header h1{
+  font-size:42px;
+  text-shadow:0 0 25px rgba(180,220,255,.7);
+}
+header p{
+  margin-top:10px;
+  font-size:18px;
+  opacity:.9;
+}
+
+/* INTRO TEXT */
+.intro-text{
   display:flex;
-  align-items:center;
   justify-content:center;
+  padding:30px 20px 50px;
 }
-.container{
-  max-width:900px;
-  width:100%;
-  text-align:center;
-}
-
-/* BOX */
-.box{
+.intro-box{
   background:rgba(255,255,255,.15);
-  backdrop-filter:blur(16px);
+  padding:45px;
   border-radius:35px;
-  padding:50px;
-  box-shadow:0 0 50px rgba(120,190,255,.4);
+  max-width:850px;
+  line-height:1.9;
+  font-size:18px;
+  text-align:center;
+  box-shadow:0 0 40px rgba(150,210,255,.45);
+  backdrop-filter:blur(16px);
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeIn 1.8s ease forwards;
+}
+@keyframes fadeIn{
+  to{opacity:1;transform:translateY(0);}
 }
 
-/* PASSWORD */
-#passwordScreen{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  background:linear-gradient(180deg,#020024,#021b3a,#001533);
-}
-input{
-  padding:15px;
-  width:100%;
+/* BUTTON */
+.scroll-btn{
+  margin-top:30px;
+  padding:14px 36px;
   border:none;
-  border-radius:25px;
-  margin:25px 0;
-  text-align:center;
-}
-button{
-  padding:14px 40px;
-  border:none;
-  border-radius:40px;
-  background:linear-gradient(45deg,#6ec6ff,#b3e5ff);
-  color:#003366;
-  font-weight:600;
+  border-radius:30px;
+  background:linear-gradient(45deg,#4facfe,#00c6ff);
+  color:#fff;
+  font-size:16px;
   cursor:pointer;
   transition:.3s;
 }
-button:hover{transform:scale(1.08);}
-
-h1{margin-bottom:25px;text-shadow:0 0 25px rgba(180,220,255,.7);}
-
-/* TYPING */
-.typing{
-  font-size:18px;
-  line-height:1.9;
-  white-space:pre-line;
-  opacity:0;
-  animation:fadeIn 2s forwards;
-}
-@keyframes fadeIn{to{opacity:1;}}
+.scroll-btn:hover{transform:scale(1.05);}
 
 /* GALLERY */
 .gallery{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:25px;
-  margin-top:40px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+  padding:40px 6%;
 }
 .photo-card{
-  position:relative;
-  border-radius:25px;
-  overflow:hidden;
-  cursor:pointer;
+  background:rgba(255,255,255,.12);
+  padding:15px;
+  border-radius:20px;
+  box-shadow:0 0 25px rgba(150,210,255,.25);
+  transition:.3s;
 }
+.photo-card:hover{transform:scale(1.05);}
 .photo-card img{
   width:100%;
-  transition:.4s;
+  border-radius:14px;
+  margin-bottom:10px;
 }
-.photo-card:hover img{transform:scale(1.08);}
-.love{
+
+/* FOOTER */
+footer{
+  padding:40px 20px;
+  text-align:center;
+  font-size:16px;
+  opacity:.85;
+}
+
+/* FIREWORK */
+.firework{
   position:absolute;
-  top:15px;
-  right:15px;
-  font-size:26px;
-  opacity:0;
-  transition:.4s;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  animation:explode 3s infinite;
 }
-.photo-card:hover .love{opacity:1;transform:scale(1.2);}
-
-/* LIGHTBOX */
-#lightbox{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.85);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-}
-#lightbox img{
-  max-width:90%;
-  max-height:90%;
-  border-radius:25px;
-  box-shadow:0 0 50px rgba(150,210,255,.6);
-}
-
-/* HUG */
-.hug-counter,.hug-message{
-  margin-top:15px;
-  font-size:17px;
-  text-shadow:0 0 18px rgba(180,220,255,.8);
-}
-.hug-message{opacity:0;transition:.6s;}
-.hug-love{
-  position:fixed;
-  font-size:22px;
-  pointer-events:none;
-  animation:floatUp 2s forwards;
-}
-@keyframes floatUp{
-  to{transform:translateY(-160px) scale(.3);opacity:0;}
+@keyframes explode{
+  100%{
+    box-shadow:
+      0 -80px #b3d9ff,
+      60px -60px #cce6ff,
+      80px 0 #80cfff,
+      60px 60px #99ddff,
+      0 80px #e6f2ff,
+      -60px 60px #b3e5ff,
+      -80px 0 #66ccff,
+      -60px -60px #d6efff;
+    opacity:0;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<audio id="bgm" loop src="newyear.mp3"></audio>
-<audio id="clickSound" src="click.mp3"></audio>
+<!-- MUSIC -->
+<audio id="bgm" loop>
+  <source src="newyear.mp3" type="audio/mpeg">
+</audio>
 
-<!-- PASSWORD -->
-<div id="passwordScreen">
-  <section>
-    <div class="container box">
-      <h1>Happy New Year 2026 💙</h1>
-      <input id="password" type="password" placeholder="Password...">
-      <button onclick="login()">Masuk</button>
-    </div>
-  </section>
-</div>
+<!-- FIREWORK -->
+<script>
+for(let i=0;i<22;i++){
+  const f=document.createElement("div");
+  f.className="firework";
+  f.style.top=Math.random()*100+"%";
+  f.style.left=Math.random()*100+"%";
+  document.body.appendChild(f);
+}
+</script>
+
+<header>
+  <h1>Happy New Year 2026 💙</h1>
+  <p>Untuk kamu yang selalu aku doakan</p>
+</header>
 
 <!-- INTRO -->
-<section id="intro">
-  <div class="container box">
-    <h1>Happy new year cantikkk 💫</h1>
-    <div id="typing" class="typing"></div>
-    <br>
-    <button onclick="document.getElementById('gallery').scrollIntoView()">Lihat Kenangan Kita 📜</button>
+<section class="intro-text">
+  <div class="intro-box">
+    <div id="introTyping"></div>
+    <button class="scroll-btn" onclick="scrollToGallery()">📜 Lihat Kenangan Kita</button>
   </div>
 </section>
 
 <!-- GALLERY -->
-<section id="gallery">
-  <div class="container">
-    <h1>Kenangan Kita 💙</h1>
-    <div class="gallery">
-      <div class="photo-card" onclick="openLightbox(this)">
-        <span class="love">💙</span>
-        <img src="photos/1.jpg">
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)">
-        <span class="love">💙</span>
-        <img src="photos/2.jpg">
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)">
-        <span class="love">💙</span>
-        <img src="photos/3.jpg">
-      </div>
-    </div>
+<div class="gallery" id="gallery">
+  <div class="photo-card">
+    <img src="photos/1.jpg">
+    <p>Momen sederhana tapi berarti 💙</p>
   </div>
-</section>
-
-<!-- HUG -->
-<section>
-  <div class="container box">
-    <h1>Pelukan Jarak Jauh 💌</h1>
-    <button onclick="sendHug(event)">💌 Kirim Pelukan</button>
-    <div class="hug-counter">🤍 Pelukan terkirim: <span id="hugCount">0</span></div>
-    <div id="hugMessage" class="hug-message"></div>
+  <div class="photo-card">
+    <img src="photos/2.jpg">
+    <p>Tawa yang selalu aku ingat ✨</p>
   </div>
-</section>
-
-<!-- LIGHTBOX -->
-<div id="lightbox" onclick="this.style.display='none'">
-  <img id="lightboxImg">
+  <div class="photo-card">
+    <img src="photos/3.jpg">
+    <p>Kenangan yang tidak akan hilang 💫</p>
+  </div>
 </div>
 
+<footer>
+  Terima kasih sudah hadir di hidupku.  
+  Semoga 2026 lebih lembut ke hatimu 💙
+</footer>
+
 <script>
-const PASSWORD="010126";
-const text=`Semoga 2026 jadi tahun
-yang lebih baik buat kamu.
+/* INTRO TEXT */
+const introText=`Happy new year cantikkk 💫
+Semoga 2026 jadi tahun
+yang lebih baikk buat kamuu.
 
 Kalau tahun kemarin berat,
-itu karena kamu diuji
-untuk jadi wanita yang kuat.
+itu karena kamu di uji untuk jadi wanita kuatt.
 
-Terima kasih sudah bertahan.
-Aku bangga sama kamu 💙`;
+Terimakasih sama diri kamu sendiri
+Aku bangga sama kamu,
+dan semoga suatu hari
+aku bisa bilang semua ini
+tanpa ada jarak di antara kita
+aku selalu doain kamu dari sini 💙
 
-let i=0,hug=0;
-const msgs=[
-  "Pelukan hangat buat kamu 🤍",
-  "Pelukan penuh doa 💫",
-  "Kamu gak sendirian 💙",
-  "Aku selalu doain kamu 🤍"
-];
+Maaf aku cuma bisa bilang lewat sini,
+semagatt terus yaa,
+kamu gak sendirian kok.
+aku bakal temenin kamu sampai
+bisa dapat yang lebih bisa ngertiin kamu`;
 
-function login(){
-  if(password.value===PASSWORD){
-    passwordScreen.style.display="none";
-    bgm.play();
-    typeText();
-  }else alert("Password salah 💔");
-}
-function typeText(){
-  if(i<text.length){
-    typing.innerHTML+=text.charAt(i++);
-    setTimeout(typeText,45);
+let i=0;
+const target=document.getElementById("introTyping");
+const music=document.getElementById("bgm");
+
+function startTyping(){
+  if(i===0) music.play();
+  if(i<introText.length){
+    target.innerHTML+=introText.charAt(i);
+    i++;
+    setTimeout(startTyping,35);
   }
 }
-function openLightbox(card){
-  lightboxImg.src=card.querySelector("img").src;
-  lightbox.style.display="flex";
-  clickSound.play();
-}
-function sendHug(e){
-  clickSound.play();
-  hugCount.innerText=++hug;
-  hugMessage.innerText=msgs[Math.floor(Math.random()*msgs.length)];
-  hugMessage.style.opacity=1;
-  setTimeout(()=>hugMessage.style.opacity=0,3000);
-  for(let i=0;i<10;i++){
-    const l=document.createElement("div");
-    l.className="hug-love";
-    l.innerText="🤍";
-    l.style.left=e.clientX+Math.random()*60-30+"px";
-    l.style.top=e.clientY+"px";
-    document.body.appendChild(l);
-    setTimeout(()=>l.remove(),2000);
-  }
+window.addEventListener("load",()=>setTimeout(startTyping,600));
+
+function scrollToGallery(){
+  document.getElementById("gallery")
+    .scrollIntoView({behavior:"smooth"});
 }
 </script>
 
