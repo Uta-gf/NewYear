@@ -7,95 +7,135 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-html,body{
-  width:100%;height:100%;
+html{scroll-behavior:smooth;}
+body{
   background:linear-gradient(180deg,#020024,#021b3a,#001533);
-  color:#fff;overflow-x:hidden;
+  color:#fff;
 }
-.screen{
+
+/* SECTION */
+section{
   min-height:100vh;
+  padding:80px 20px;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:40px;
 }
+.container{
+  max-width:900px;
+  width:100%;
+  text-align:center;
+}
+
+/* BOX */
 .box{
   background:rgba(255,255,255,.15);
   backdrop-filter:blur(16px);
   border-radius:35px;
   padding:50px;
-  max-width:900px;
-  text-align:center;
-  box-shadow:0 0 50px rgba(120,190,255,.45);
+  box-shadow:0 0 50px rgba(120,190,255,.4);
 }
-h1{margin-bottom:25px;text-shadow:0 0 25px rgba(180,220,255,.7);}
+
+/* PASSWORD */
+#passwordScreen{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:linear-gradient(180deg,#020024,#021b3a,#001533);
+}
 input{
-  width:100%;padding:15px;border:none;
-  border-radius:25px;text-align:center;
-  margin:25px 0;font-size:16px;
+  padding:15px;
+  width:100%;
+  border:none;
+  border-radius:25px;
+  margin:25px 0;
+  text-align:center;
 }
 button{
-  padding:14px 40px;border:none;border-radius:40px;
+  padding:14px 40px;
+  border:none;
+  border-radius:40px;
   background:linear-gradient(45deg,#6ec6ff,#b3e5ff);
-  color:#003366;font-weight:600;
-  cursor:pointer;transition:.3s;
+  color:#003366;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
 }
 button:hover{transform:scale(1.08);}
-.typing{font-size:18px;line-height:1.9;white-space:pre-line;opacity:0;}
-.fade-in{animation:fade 2s forwards;}
-@keyframes fade{to{opacity:1;}}
+
+h1{margin-bottom:25px;text-shadow:0 0 25px rgba(180,220,255,.7);}
+
+/* TYPING */
+.typing{
+  font-size:18px;
+  line-height:1.9;
+  white-space:pre-line;
+  opacity:0;
+  animation:fadeIn 2s forwards;
+}
+@keyframes fadeIn{to{opacity:1;}}
 
 /* GALLERY */
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:25px;margin-top:40px;
+  gap:25px;
+  margin-top:40px;
 }
 .photo-card{
-  position:relative;border-radius:25px;
-  overflow:hidden;cursor:pointer;
+  position:relative;
+  border-radius:25px;
+  overflow:hidden;
+  cursor:pointer;
 }
 .photo-card img{
-  width:100%;transition:.4s;
+  width:100%;
+  transition:.4s;
 }
 .photo-card:hover img{transform:scale(1.08);}
 .love{
-  position:absolute;top:15px;right:15px;
-  font-size:26px;opacity:0;transition:.4s;
+  position:absolute;
+  top:15px;
+  right:15px;
+  font-size:26px;
+  opacity:0;
+  transition:.4s;
 }
 .photo-card:hover .love{opacity:1;transform:scale(1.2);}
 
 /* LIGHTBOX */
 #lightbox{
-  position:fixed;inset:0;
+  position:fixed;
+  inset:0;
   background:rgba(0,0,0,.85);
-  display:none;align-items:center;justify-content:center;
+  display:none;
+  align-items:center;
+  justify-content:center;
   z-index:9999;
 }
 #lightbox img{
-  max-width:90%;max-height:90%;
+  max-width:90%;
+  max-height:90%;
   border-radius:25px;
   box-shadow:0 0 50px rgba(150,210,255,.6);
-  transition:.35s;
 }
 
-/* LOVE EFFECT */
-.falling-love,.hug-love{
-  position:fixed;font-size:22px;
+/* HUG */
+.hug-counter,.hug-message{
+  margin-top:15px;
+  font-size:17px;
+  text-shadow:0 0 18px rgba(180,220,255,.8);
+}
+.hug-message{opacity:0;transition:.6s;}
+.hug-love{
+  position:fixed;
+  font-size:22px;
   pointer-events:none;
   animation:floatUp 2s forwards;
 }
 @keyframes floatUp{
   to{transform:translateY(-160px) scale(.3);opacity:0;}
 }
-
-/* HUG */
-.hug-btn{margin-top:30px;}
-.hug-counter,.hug-message{
-  margin-top:15px;font-size:17px;
-  text-shadow:0 0 18px rgba(180,220,255,.8);
-}
-.hug-message{opacity:0;transition:.6s;}
 </style>
 </head>
 
@@ -105,24 +145,31 @@ button:hover{transform:scale(1.08);}
 <audio id="clickSound" src="click.mp3"></audio>
 
 <!-- PASSWORD -->
-<div id="passwordScreen" class="screen">
-  <div class="box">
-    <h1>Happy New Year 2026 💙</h1>
-    <input type="password" id="password" placeholder="Password...">
-    <button onclick="login()">Masuk</button>
-  </div>
+<div id="passwordScreen">
+  <section>
+    <div class="container box">
+      <h1>Happy New Year 2026 💙</h1>
+      <input id="password" type="password" placeholder="Password...">
+      <button onclick="login()">Masuk</button>
+    </div>
+  </section>
 </div>
 
-<!-- CONTENT -->
-<div id="content" class="screen" style="display:none;">
-  <div class="box">
+<!-- INTRO -->
+<section id="intro">
+  <div class="container box">
     <h1>Happy new year cantikkk 💫</h1>
+    <div id="typing" class="typing"></div>
+    <br>
+    <button onclick="document.getElementById('gallery').scrollIntoView()">Lihat Kenangan Kita 📜</button>
+  </div>
+</section>
 
-    <div id="typing" class="typing fade-in"></div>
-
-    <button onclick="scrollToGallery()">Lihat Kenangan Kita 📜</button>
-
-    <div class="gallery" id="gallery">
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <h1>Kenangan Kita 💙</h1>
+    <div class="gallery">
       <div class="photo-card" onclick="openLightbox(this)">
         <span class="love">💙</span>
         <img src="photos/1.jpg">
@@ -136,15 +183,21 @@ button:hover{transform:scale(1.08);}
         <img src="photos/3.jpg">
       </div>
     </div>
+  </div>
+</section>
 
-    <button class="hug-btn" onclick="sendHug(event)">💌 Kirim Pelukan</button>
+<!-- HUG -->
+<section>
+  <div class="container box">
+    <h1>Pelukan Jarak Jauh 💌</h1>
+    <button onclick="sendHug(event)">💌 Kirim Pelukan</button>
     <div class="hug-counter">🤍 Pelukan terkirim: <span id="hugCount">0</span></div>
     <div id="hugMessage" class="hug-message"></div>
   </div>
-</div>
+</section>
 
 <!-- LIGHTBOX -->
-<div id="lightbox" onclick="closeLightbox()">
+<div id="lightbox" onclick="this.style.display='none'">
   <img id="lightboxImg">
 </div>
 
@@ -153,23 +206,25 @@ const PASSWORD="010126";
 const text=`Semoga 2026 jadi tahun
 yang lebih baik buat kamu.
 
-Kalau kemarin berat,
-itu karena kamu diuji untuk jadi wanita kuat.
+Kalau tahun kemarin berat,
+itu karena kamu diuji
+untuk jadi wanita yang kuat.
 
-Terima kasih sudah bertahan,
-aku bangga sama kamu.
+Terima kasih sudah bertahan.
+Aku bangga sama kamu 💙`;
 
-Semoga suatu hari,
-aku bisa bilang semua ini
-tanpa jarak di antara kita 💙`;
+let i=0,hug=0;
+const msgs=[
+  "Pelukan hangat buat kamu 🤍",
+  "Pelukan penuh doa 💫",
+  "Kamu gak sendirian 💙",
+  "Aku selalu doain kamu 🤍"
+];
 
-let i=0;
 function login(){
   if(password.value===PASSWORD){
     passwordScreen.style.display="none";
-    content.style.display="flex";
     bgm.play();
-    typing.style.opacity=1;
     typeText();
   }else alert("Password salah 💔");
 }
@@ -179,54 +234,19 @@ function typeText(){
     setTimeout(typeText,45);
   }
 }
-function scrollToGallery(){
-  document.getElementById("gallery").scrollIntoView({behavior:"smooth"});
-}
-
-/* LIGHTBOX + SWIPE */
-let images=[...document.querySelectorAll(".photo-card img")].map(i=>i.src);
-let idx=0,startX=0;
 function openLightbox(card){
-  idx=images.indexOf(card.querySelector("img").src);
-  lightboxImg.src=images[idx];
+  lightboxImg.src=card.querySelector("img").src;
   lightbox.style.display="flex";
-  playClick();
-}
-function closeLightbox(){lightbox.style.display="none";}
-lightbox.addEventListener("touchstart",e=>startX=e.touches[0].clientX);
-lightbox.addEventListener("touchend",e=>{
-  let end=e.changedTouches[0].clientX;
-  if(startX-end>50) show(1);
-  if(end-startX>50) show(-1);
-});
-function show(d){
-  idx=(idx+d+images.length)%images.length;
-  lightboxImg.src=images[idx];
-  playClick();
-}
-
-/* CLICK */
-function playClick(){
-  clickSound.currentTime=0;
   clickSound.play();
 }
-
-/* HUG */
-let hugTotal=0;
-const msgs=[
-  "Pelukan hangat buat kamu 🤍",
-  "Pelukan penuh doa 💫",
-  "Aku selalu doain kamu 💙",
-  "Kamu gak sendirian 🤍"
-];
 function sendHug(e){
-  playClick();
-  hugCount.innerText=++hugTotal;
+  clickSound.play();
+  hugCount.innerText=++hug;
   hugMessage.innerText=msgs[Math.floor(Math.random()*msgs.length)];
   hugMessage.style.opacity=1;
   setTimeout(()=>hugMessage.style.opacity=0,3000);
-  for(let i=0;i<12;i++){
-    let l=document.createElement("div");
+  for(let i=0;i<10;i++){
+    const l=document.createElement("div");
     l.className="hug-love";
     l.innerText="🤍";
     l.style.left=e.clientX+Math.random()*60-30+"px";
